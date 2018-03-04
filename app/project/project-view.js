@@ -64,6 +64,23 @@ function ProjectViewController($scope, projectService) {
         projectService.updateChecklistItem(ctrl.project.id, item.id, item);
     };
 
+    /**
+     * Remove all done checklist items from current project
+     */
+    ctrl.onRemoveDoneChecklistItems = function () {
+        projectService.deleteDoneChecklistItems(ctrl.project.id).then(function () {
+            var notDone = [];
+            var checklistItems = ctrl.project.checklist;
+            for (var i = 0; i < checklistItems.length; i++) {
+                if (!checklistItems[i].done) {
+                    notDone.push(checklistItems[i])
+                }
+            }
+            ctrl.project.checklist = notDone;
+        });
+
+    };
+
     ctrl.main();
 }
 

@@ -43,6 +43,13 @@ function ChecklistController() {
         ctrl.onUpdateItem({item: item});
     };
 
+    /**
+     * Remove done items
+     */
+    ctrl.removeDoneItems = function () {
+        ctrl.onRemoveDoneItems();
+    };
+
     ctrl.main();
 }
 
@@ -52,6 +59,7 @@ angular.module('myApp').component('checklist', {
     bindings: {
         checklist: '<',
         onUpdateItem: '&',
+        onRemoveDoneItems: '&',
         onAddItem: '&'
     }
 });

@@ -77,6 +77,17 @@ function ProjectService(rootScope, http) {
         })
     };
 
+    /**
+     * Delete done checklist item of given project
+     * @param projectId - project containing items to be deleted
+     * @returns {Promise} - null if everything ok
+     */
+    projectService.deleteDoneChecklistItems = function (projectId) {
+        return http.delete(URL + "/" + projectId + "/checklist-items/").then(function (response) {
+            return response.data;
+        })
+    };
+
     projectService.subscribeLock = function (scope, callback) {
         var handler = rootScope.$on('lock', callback);
         scope.$on('$destroy', handler);

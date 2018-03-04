@@ -1,0 +1,37 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">AngularJS</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="col-md-3">
+        <project-list projects="$ctrl.projects"
+                      on-select-project="$ctrl.onSelectProject(project)"
+                      selected-project="$ctrl.selectedProject">
+        </project-list>
+        <button class="btn btn-default" ng-click="$ctrl.clickAddProject()">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <span>Add project</span>
+        </button>
+    </div>
+
+    <div class="col-md-9" ng-if="$ctrl.selectedProject">
+
+        <div ng-switch="$ctrl.isEditMode">
+            <div ng-switch-when="true">
+                <project-form project="$ctrl.selectedProject"
+                              on-submit-form="$ctrl.onSubmitForm(project)"
+                              on-cancel-form="$ctrl.onCancelForm()"></project-form>
+            </div>
+            <div ng-switch-when="false">
+                <project-view project="$ctrl.selectedProject"
+                              on-delete-project="$ctrl.onDeleteProject(project)"
+                ></project-view>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9" ng-if="!$ctrl.selectedProject">
+        <h1>No project selected</h1>
+    </div>
+</div>

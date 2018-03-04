@@ -1,0 +1,13 @@
+<div class="pull-left add-margin">
+    <button type="button" class="btn btn-default btn-lg" ng-class="{'btn-info': !$ctrl.running}"
+            ng-click="$ctrl.toggleTimer()">
+        <span class="glyphicon" ng-class="{'glyphicon-play': !$ctrl.running, 'glyphicon-pause': $ctrl.running}"
+              aria-hidden="true"></span>
+    </button>
+</div>
+<div class="pull-left">
+    <p>
+        Current recording: {{$ctrl.getTime($ctrl.currentTime)}} <br>
+        Total time: {{$ctrl.getTime($ctrl.time + $ctrl.currentTime)}}
+    </p>
+</div>

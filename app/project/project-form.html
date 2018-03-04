@@ -1,0 +1,35 @@
+<div class="row">
+    <h1 ng-class="{'placeholder': projectCopy.title.length === 0}">{{$ctrl.showProjectHeading()}}</h1>
+    <form class="form-horizontal">
+
+        <div class="form-group">
+            <label for="title" class="col-sm-2">Title</label>
+            <div class="col-sm-10">
+                <input class="form-control"
+                       id="title"
+                       name="title"
+                       ng-model="$ctrl.projectCopy.title">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description" class="col-sm-2">Description</label>
+            <div class="col-sm-10">
+          <textarea class="form-control"
+                    id="description"
+                    ng-model="$ctrl.projectCopy.description"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default" ng-click="$ctrl.submitForm()">
+                    Submit
+                </button>
+                &ensp;
+                <button type="button" class="btn btn-danger" ng-click="$ctrl.cancelForm()">Cancel</button>
+            </div>
+        </div>
+
+    </form>
+</div>

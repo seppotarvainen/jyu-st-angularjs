@@ -1,0 +1,31 @@
+/* app css stylesheet */
+
+body {
+    padding-top: 50px !important;
+}
+
+ul.checklist {
+    list-style: none;
+    padding-left: 0;
+    line-height: 0.8rem;
+}
+
+ul.checklist .done {
+    text-decoration: line-through;
+    font-style: italic;
+    color: gray;
+}
+
+ul.checklist input[type="checkbox"], .add-margin {
+    margin-right: 1em;
+}
+
+h1.placeholder {
+    font-style: italic;
+    color: gray;
+}
+
+h1 > sup {
+    font-size: 1.25rem;
+    top: -1em;
+}

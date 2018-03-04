@@ -64,6 +64,19 @@ function ProjectService(rootScope, http) {
         })
     };
 
+    /**
+     * Update project's checklist item
+     * @param projectId - project containing checklist item
+     * @param itemId - checklist item id
+     * @param checklistItem - checklist item data
+     * @returns {Promise} - updated checklist item
+     */
+    projectService.updateChecklistItem = function (projectId, itemId, checklistItem) {
+        return http.put(URL + "/" + projectId + "/checklist-items/" + itemId, checklistItem).then(function (response) {
+            return response.data;
+        })
+    };
+
     projectService.subscribeLock = function (scope, callback) {
         var handler = rootScope.$on('lock', callback);
         scope.$on('$destroy', handler);

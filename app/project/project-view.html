@@ -32,6 +32,7 @@
 
     <div>
         <checklist checklist="$ctrl.project.checklist"
+                   on-update-item="$ctrl.onUpdateChecklistItem(item)"
                    on-add-item="$ctrl.onAddChecklistItem(item)"></checklist>
     </div>
 </div>

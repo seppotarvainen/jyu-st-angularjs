@@ -36,6 +36,13 @@ function ChecklistController() {
         });
     };
 
+    /**
+     * Set checklist item as done
+     */
+    ctrl.setItemDone = function (item) {
+        ctrl.onUpdateItem({item: item});
+    };
+
     ctrl.main();
 }
 
@@ -44,6 +51,7 @@ angular.module('myApp').component('checklist', {
     controller: ChecklistController,
     bindings: {
         checklist: '<',
+        onUpdateItem: '&',
         onAddItem: '&'
     }
 });

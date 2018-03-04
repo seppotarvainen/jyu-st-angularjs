@@ -1,9 +1,10 @@
 <h3>Checklist</h3>
 <!-- checklist view -->
 <div ng-if="!$ctrl.isEditMode">
-    <ul>
+    <ul class="checklist">
         <li ng-repeat="item in $ctrl.checklist">
-            {{item.content}}
+            <input id="item-{{item.id}}" type="checkbox" ng-model="item.done" ng-click="$ctrl.setItemDone(item)"/>
+            <label for="item-{{item.id}}" ng-class="{'done': item.done}">{{item.content}}</label>
         </li>
     </ul>
     <button class="btn btn-default" ng-click="$ctrl.clickAddItem()">Add item</button>

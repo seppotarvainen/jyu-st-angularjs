@@ -56,6 +56,14 @@ function ProjectViewController($scope, projectService) {
         });
     };
 
+    /**
+     * Update project checklist item
+     * @param item - checklist item to update
+     */
+    ctrl.onUpdateChecklistItem = function (item) {
+        projectService.updateChecklistItem(ctrl.project.id, item.id, item);
+    };
+
     ctrl.main();
 }
 

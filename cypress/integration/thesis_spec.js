@@ -91,4 +91,15 @@ describe('AngularJS project test', function () {
         cy.contains('0h 0min 1s');
     });
 
+    it('Test version 1.1: mark as done', function () {
+        addProject('My project title', 'This is something absolutely great');
+        addProject('Another project', 'This is something else');
+
+        cy.get('#isDone')
+            .click();
+
+        cy.get('h1>span');
+        cy.get('.col-md-3 span.glyphicon-ok').should('have.length', 1);
+    });
+
 });

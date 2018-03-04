@@ -23,7 +23,8 @@ function ProjectFormController() {
      * Cancel form
      */
     ctrl.cancelForm = function () {
-        ctrl.onCancelForm();
+        ctrl.projectCopy = JSON.parse(JSON.stringify(ctrl.project));
+        ctrl.onCancelForm({project: ctrl.projectCopy});
     };
 
     /**

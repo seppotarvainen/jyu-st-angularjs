@@ -43,23 +43,28 @@ function MainController(projectService) { // project-factory
     };
 
     /**
+     * Handle project view 'edit project' button
+     * @param project - project to edit
+     */
+    ctrl.onClickEditProject = function (project) {
+        ctrl.selectedProject = project;
+        ctrl.isEditMode = true;
+    };
+
+    /**
      * Handle project form submit
      * @param project - project data
      */
     ctrl.onSubmitForm = function (project) {
-        projectService.addProject(project).then(function (data) {
-            ctrl.projects.push(data);
-            ctrl.selectedProject = data;
-            ctrl.isEditMode = false;
-        });
-    };
-
-    /**
-     * Handle cancel form
-     */
-    ctrl.onCancelForm = function () {
-        ctrl.isEditMode = false;
-        ctrl.selectedProject = null;
+        if (!project.id) {
+            projectService.addProject(project).then(function (data) {
+                ctrl.projects.push(data);
+                ctrl.selectedProject = data;
+                ctrl.isEditMode = false;
+            });
+        } else {
+            ctrl.onEditProject(project);
+        }
     };
 
     /**
@@ -71,10 +76,20 @@ function MainController(projectService) { // project-factory
             if (ctrl.projects[i].id === project.id) {
                 ctrl.projects[i] = project;
                 projectService.updateProject(project).then(function (data) {
+                    ctrl.isEditMode = false;
+                    ctrl.selectedProject = project;
                 });
                 break;
             }
         }
+    };
+
+    /**
+     * Handle cancel form
+     */
+    ctrl.onCancelForm = function (project) {
+        ctrl.isEditMode = false;
+        ctrl.selectedProject = Boolean(project.id) ? project : null;
     };
 
     /**

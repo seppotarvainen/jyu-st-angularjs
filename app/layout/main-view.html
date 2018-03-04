@@ -8,6 +8,7 @@
     <div class="col-md-3">
         <project-list projects="$ctrl.projects"
                       on-select-project="$ctrl.onSelectProject(project)"
+
                       selected-project="$ctrl.selectedProject">
         </project-list>
         <button class="btn btn-default" ng-click="$ctrl.clickAddProject()">
@@ -22,11 +23,12 @@
             <div ng-switch-when="true">
                 <project-form project="$ctrl.selectedProject"
                               on-submit-form="$ctrl.onSubmitForm(project)"
-                              on-cancel-form="$ctrl.onCancelForm()"></project-form>
+                              on-cancel-form="$ctrl.onCancelForm(project)"></project-form>
             </div>
             <div ng-switch-when="false">
                 <project-view project="$ctrl.selectedProject"
                               on-edit-project="$ctrl.onEditProject(project)"
+                              on-click-edit-project="$ctrl.onClickEditProject(project)"
                               on-delete-project="$ctrl.onDeleteProject(project)"
                 ></project-view>
             </div>

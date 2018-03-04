@@ -6,6 +6,13 @@ function ProjectViewController(projectService) {
     var ctrl = this;
 
     /**
+     * Set project to edit
+     */
+    ctrl.clickEditProject = function () {
+        ctrl.onClickEditProject({project: ctrl.project})
+    };
+
+    /**
      * Delete current project
      */
     ctrl.deleteProject = function () {
@@ -39,6 +46,7 @@ angular.module('myApp').component('projectView', {
     bindings: {
         project: '<',
         onEditProject: '&',
+        onClickEditProject: '&',
         onDeleteProject: '&'
     }
 });

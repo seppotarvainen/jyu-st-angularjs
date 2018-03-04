@@ -42,6 +42,23 @@ describe('AngularJS project test', function () {
         cy.get('.col-md-3 div button.list-group-item').should('have.length', count);
     };
 
+    var editProject = function (oldProjectTitle, newTitle, newDescription) {
+        cy.contains(oldProjectTitle)
+            .click();
+        cy.contains('Edit project')
+            .click();
+        cy.get('#title')
+            .clear()
+            .type(newTitle);
+
+        cy.get('#description')
+            .clear()
+            .type(newDescription);
+
+        cy.contains("Submit")
+            .click();
+    };
+
     before(function () {
         cy.visit('/');
     });
@@ -100,6 +117,25 @@ describe('AngularJS project test', function () {
 
         cy.get('h1>span');
         cy.get('.col-md-3 span.glyphicon-ok').should('have.length', 1);
+    });
+
+    it('Test version 1.2: edit project', function () {
+        addProject('My project title', 'This is something absolutely great');
+        addProject('Another project', 'This is something else');
+
+        editProject('My project title', 'Totally new project title', 'New description');
+        testProjectCount(2);
+
+        cy.contains('Edit project').click();
+
+        cy.get('input[name="title"]')
+            .clear()
+            .type("This is not going to be here");
+        cy.get('h1').contains('This is not going to be here');
+        cy.contains('Cancel').click();
+
+        cy.contains('Totally new project title'); // select latest project
+        cy.get('h1').contains('Totally new project title');
     });
 
 });

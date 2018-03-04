@@ -59,6 +59,19 @@ describe('AngularJS project test', function () {
             .click();
     };
 
+    var addChecklistItemToSelected = function (content) {
+        cy.contains('Add item')
+            .click();
+        cy.get('#content')
+            .type(content);
+        cy.contains('Submit')
+            .click();
+    };
+
+    var testProjectChecklistItemCount = function (count) {
+        cy.get('div.col-md-9 ul>li').should('have.length', count);
+    };
+
     before(function () {
         cy.visit('/');
     });
@@ -153,6 +166,23 @@ describe('AngularJS project test', function () {
         cy.contains('Edit project').should('be.disabled');
         // stop timer
         cy.get('button.btn-lg').click();
+    });
+
+    it('Test version 1.4: add checklist item', function () {
+        addProject('My project title', 'This is something absolutely great');
+        addProject('Another project', 'This is something else');
+        addChecklistItemToSelected('Checklist item content');
+        addChecklistItemToSelected('Another todo item');
+        testProjectChecklistItemCount(2);
+
+        cy.contains('My project title')
+            .click();
+        addChecklistItemToSelected('1st todo item');
+        testProjectChecklistItemCount(1);
+
+        cy.contains('Another project')
+            .click();
+        testProjectChecklistItemCount(2);
     });
 
 });

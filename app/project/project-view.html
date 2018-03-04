@@ -29,4 +29,9 @@
             <label for="isDone">Mark project as done</label>
         </p>
     </div>
+
+    <div>
+        <checklist checklist="$ctrl.project.checklist"
+                   on-add-item="$ctrl.onAddChecklistItem(item)"></checklist>
+    </div>
 </div>

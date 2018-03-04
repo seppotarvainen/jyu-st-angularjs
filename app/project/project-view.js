@@ -46,6 +46,16 @@ function ProjectViewController($scope, projectService) {
         });
     };
 
+    /**
+     * Add checklist item to project
+     * @param item - checklist item to add
+     */
+    ctrl.onAddChecklistItem = function (item) {
+        return projectService.addChecklistItem(ctrl.project.id, item).then(function (data) {
+            ctrl.project.checklist.push(data);
+        });
+    };
+
     ctrl.main();
 }
 

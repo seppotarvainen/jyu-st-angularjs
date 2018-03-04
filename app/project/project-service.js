@@ -52,6 +52,18 @@ function ProjectService(rootScope, http) {
         })
     };
 
+    /**
+     * Add checklist item to project
+     * @param projectId - project of the new checklist item
+     * @param checklistItem - checklist item
+     * @returns {Promise} - new checklist item
+     */
+    projectService.addChecklistItem = function (projectId, checklistItem) {
+        return http.post(URL + "/" + projectId + "/checklist-items", checklistItem).then(function (response) {
+            return response.data;
+        })
+    };
+
     projectService.subscribeLock = function (scope, callback) {
         var handler = rootScope.$on('lock', callback);
         scope.$on('$destroy', handler);

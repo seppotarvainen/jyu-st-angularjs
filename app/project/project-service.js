@@ -2,10 +2,12 @@
  * Created by tarva on 19.11.2017.
  */
 
-function ProjectService(http) {
+function ProjectService(rootScope, http) {
     var projectService = this;
 
     var URL = "http://localhost:8080/projects";
+
+    projectService._lock = false;
 
     /**
      * Load all projects
@@ -50,7 +52,21 @@ function ProjectService(http) {
         })
     };
 
+    projectService.subscribeLock = function (scope, callback) {
+        var handler = rootScope.$on('lock', callback);
+        scope.$on('$destroy', handler);
+    };
+
+    projectService.setLock = function (lockState) {
+        projectService._lock = lockState;
+        rootScope.$emit('lock', lockState);
+    };
+
+    projectService.getLock = function () {
+        return projectService._lock;
+    };
+
     return projectService;
 }
 
-angular.module('myApp').factory('projectService', ['$http', ProjectService]);
+angular.module('myApp').factory('projectService', ['$rootScope', '$http', ProjectService]);

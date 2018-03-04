@@ -2,8 +2,15 @@
  * Created by tarva on 19.11.2017.
  */
 
-function ProjectViewController(projectService) {
+function ProjectViewController($scope, projectService) {
     var ctrl = this;
+    ctrl._isLocked = projectService.getLock();
+
+    ctrl.main = function () {
+        projectService.subscribeLock($scope, function (event, data) {
+            ctrl._isLocked = data;
+        });
+    };
 
     /**
      * Set project to edit
@@ -37,7 +44,9 @@ function ProjectViewController(projectService) {
         projectService.updateProject(ctrl.project).then(function (data) {
             ctrl.project = data;
         });
-    }
+    };
+
+    ctrl.main();
 }
 
 angular.module('myApp').component('projectView', {

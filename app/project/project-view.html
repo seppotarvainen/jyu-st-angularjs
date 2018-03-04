@@ -15,10 +15,11 @@
     <hr>
     <div>
         <p>&ensp;
-            <button type="button" class="btn btn-default" ng-click="$ctrl.clickEditProject()">
+            <button type="button" class="btn btn-default" ng-disabled="$ctrl._isLocked"
+                    ng-click="$ctrl.clickEditProject()">
                 Edit project
             </button>
-            <button type="button" class="btn btn-danger" ng-click="$ctrl.deleteProject()">
+            <button type="button" class="btn btn-danger" ng-disabled="$ctrl._isLocked" ng-click="$ctrl.deleteProject()">
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete project
             </button>
         </p>

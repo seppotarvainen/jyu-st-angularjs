@@ -19,6 +19,7 @@ angular.module('myApp').component('projectList', {
     controller: ProjectListController,
     bindings: {
         projects: '<',
+        isLocked: '<',
         selectedProject: '<',
         onSelectProject: '&'
     }

@@ -2,7 +2,7 @@
  * Created by tarva on 19.11.2017.
  */
 
-function TimerController($interval) {
+function TimerController($interval, projectService) {
     var ctrl = this;
 
     /**
@@ -26,6 +26,7 @@ function TimerController($interval) {
             ctrl.currentTime = 0;
             $interval.cancel(ctrl.timer);
         }
+        projectService.setLock(ctrl.running);
     };
 
     /**

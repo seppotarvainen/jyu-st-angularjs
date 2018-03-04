@@ -2,9 +2,9 @@
  * Created by tarva on 19.11.2017.
  */
 
-function MainController(projectService) { // project-factory
+function MainController($scope, projectService) { // project-factory
     var ctrl = this;
-
+    ctrl._isLocked = projectService.getLock();
     /**
      * Constructor
      */
@@ -16,6 +16,10 @@ function MainController(projectService) { // project-factory
                 ctrl.selectedProject = ctrl.projects[0]
             }
         );
+
+        projectService.subscribeLock($scope, function (event, data) {
+            ctrl._isLocked = data;
+        });
     };
 
     /**

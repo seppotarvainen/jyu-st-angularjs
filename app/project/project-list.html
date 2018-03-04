@@ -2,7 +2,8 @@
     <small><strong>PROJECTS</strong></small>
 </h3>
 <div ng-repeat="project in $ctrl.projects">
-    <button class="list-group-item" ng-class="{'list-group-item-info': project === $ctrl.selectedProject}"
+    <button class="list-group-item btn" ng-class="{'list-group-item-info': project === $ctrl.selectedProject}"
+            ng-disabled="$ctrl.isLocked"
             ng-click="$ctrl.selectProject(project)">
         <span>{{project.title}}</span>
         <span ng-class="{'glyphicon glyphicon-ok': project.done}"></span>

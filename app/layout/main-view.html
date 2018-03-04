@@ -8,10 +8,10 @@
     <div class="col-md-3">
         <project-list projects="$ctrl.projects"
                       on-select-project="$ctrl.onSelectProject(project)"
-
+                      is-locked="$ctrl._isLocked"
                       selected-project="$ctrl.selectedProject">
         </project-list>
-        <button class="btn btn-default" ng-click="$ctrl.clickAddProject()">
+        <button class="btn btn-default" ng-disabled="$ctrl._isLocked" ng-click="$ctrl.clickAddProject()">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             <span>Add project</span>
         </button>

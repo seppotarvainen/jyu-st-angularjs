@@ -1,6 +1,8 @@
 <div class="row">
     <h1>
         {{ $ctrl.project.title }}
+        <span ng-if="$ctrl.project.done" class="glyphicon glyphicon-ok small">
+        </span>
     </h1>
 
     <p class="lead">
@@ -16,6 +18,11 @@
             <button type="button" class="btn btn-danger" ng-click="$ctrl.deleteProject()">
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete project
             </button>
+        </p>
+        <p>
+            <input id="isDone" type="checkbox" ng-model="$ctrl.project.done"
+                   ng-click="$ctrl.setProjectDone($ctrl.project.done)"/>
+            <label for="isDone">Mark project as done</label>
         </p>
     </div>
 </div>

@@ -13,6 +13,15 @@ function ProjectViewController(projectService) {
     };
 
     /**
+     * Toggle project done state
+     * @param value - new project done state
+     */
+    ctrl.setProjectDone = function (value) {
+        ctrl.project.done = value;
+        ctrl.onEditProject({project: ctrl.project});
+    };
+
+    /**
      * Update project time
      * @param time - new project time
      */
@@ -29,6 +38,7 @@ angular.module('myApp').component('projectView', {
     controller: ProjectViewController,
     bindings: {
         project: '<',
+        onEditProject: '&',
         onDeleteProject: '&'
     }
 });

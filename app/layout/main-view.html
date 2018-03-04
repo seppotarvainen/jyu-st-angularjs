@@ -26,6 +26,7 @@
             </div>
             <div ng-switch-when="false">
                 <project-view project="$ctrl.selectedProject"
+                              on-edit-project="$ctrl.onEditProject(project)"
                               on-delete-project="$ctrl.onDeleteProject(project)"
                 ></project-view>
             </div>

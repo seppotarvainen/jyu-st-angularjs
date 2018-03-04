@@ -63,6 +63,21 @@ function MainController(projectService) { // project-factory
     };
 
     /**
+     * Edit project
+     * @param project - updated project
+     */
+    ctrl.onEditProject = function (project) {
+        for (var i = 0; i < ctrl.projects.length; i++) {
+            if (ctrl.projects[i].id === project.id) {
+                ctrl.projects[i] = project;
+                projectService.updateProject(project).then(function (data) {
+                });
+                break;
+            }
+        }
+    };
+
+    /**
      * Handle delete project
      * @param project - project to delete
      */

@@ -5,6 +5,7 @@
     <button class="list-group-item" ng-class="{'list-group-item-info': project === $ctrl.selectedProject}"
             ng-click="$ctrl.selectProject(project)">
         <span>{{project.title}}</span>
+        <span ng-class="{'glyphicon glyphicon-ok': project.done}"></span>
     </button>
 </div>
 <br>
